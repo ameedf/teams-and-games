@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const gamesRepository = require('./gamesRepository')
 
+// Get all
 router.get('/', async (req, res) => {
   try {
     const results = await gamesRepository.findAll();
@@ -10,6 +11,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Create new 
 router.post('/', async (req, res) => {
   try {
     const game = req.body;

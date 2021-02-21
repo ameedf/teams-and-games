@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {init} from './teamsActions';
 
 class TeamsPage extends Component {
   constructor(props) {
@@ -7,10 +9,19 @@ class TeamsPage extends Component {
     this.teamPointsRef = React.createRef();
   }
 
+  componentDidMount() {
+   this.initalize();
+  }
+
+  async initalize() {
+    console.log("abc");
+    this.props.onInitializeTeams();
+  }
+
   addTeam() {
     const name = this.teamNameRef.current.value;
     const points = this.teamPointsRef.current.value;
-    this.props.onTeamAdded({ name, points });
+    this.props.onTeamAdded( { id: Math.ceil(Math.random()*1000), name, points } );
     this.teamNameRef.current.value = '';
     this.teamPointsRef.current.value = '';
   }
@@ -37,4 +48,18 @@ class TeamsPage extends Component {
   }
 }
 
-export default TeamsPage;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    list: state.teams,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTeamAdded: (team) => dispatch({type: 'team/added', team: team}),
+    onInitializeTeams: () => dispatch(init())
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeamsPage);

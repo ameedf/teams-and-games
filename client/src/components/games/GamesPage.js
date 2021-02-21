@@ -21,7 +21,9 @@ class GamesPage extends Component {
     const secondTeamId = this.props.teams.find(t => t.name === secondTeamName).id;
     const firstTeamScore = this.firstTeamScore.current.value;
     const secondTeamScore = this.secondTeamScore.current.value;
+
     this.props.onGameAdded({ firstTeamId, secondTeamId, firstTeamScore, secondTeamScore });
+    
     this.firstTeamRef.current.value = '';
     this.secondTeamRef.current.value = '';
     this.firstTeamScore.current.value = '';

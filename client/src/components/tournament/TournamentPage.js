@@ -101,7 +101,7 @@ class TournamentPage extends Component {
               <GamesPage games={games} teams={teams} onGameAdded={(game) => this.addNewGame(game)} />
             </Route>
             <Route path="/teams">
-              <TeamsPage list={teams} onTeamAdded={(newTeam) => this.addNewTeam(newTeam)} />
+              <TeamsPage />
             </Route>
             <Route path="/">
               <StatisticsPage teamsNumber={teams.length} gamesNumber={games.length} />

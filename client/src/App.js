@@ -1,11 +1,17 @@
+import { Provider } from 'react-redux';
 import './App.css';
+import TeamsPage from './components/teams/TeamsPage';
 import TournamentPage from './components/tournament/TournamentPage';
+
+import appStore from './redux/appStore';
 
 function App() {
   return (
-    <div className="App">
-      <TournamentPage />
-    </div>
+    <Provider store={appStore}>
+      <div className="App">
+        <TeamsPage />
+      </div>
+    </Provider>
   );
 }
 
